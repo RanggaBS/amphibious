@@ -43,8 +43,11 @@ else if (window.location.href.includes("login")) {
 	usernameInput.addEventListener("input", () => {
 		passwordInput.value = usernameInput.value;
 	});
+<<<<<<< HEAD
 
 	// usernameInput.focus();
+=======
+>>>>>>> 9a42c66bd0e52bfb5dff06c95024a26b355dfbea
 }
 
 // status.html
