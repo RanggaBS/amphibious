@@ -43,20 +43,8 @@ else if (window.location.href.includes("login")) {
 	usernameInput.addEventListener("input", () => {
 		passwordInput.value = usernameInput.value;
 	});
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 	// usernameInput.focus();
-=======
->>>>>>> 9a42c66bd0e52bfb5dff06c95024a26b355dfbea
-=======
-
-	// QR button
-	const qrButton = document.querySelector("#qr-button");
-	qrButton.addEventListener("click", event => {
-		window.location.href = "./qr.html";
-	});
->>>>>>> parent of 9a42c66 (Update index.js)
 }
 
 // status.html
