@@ -7,11 +7,15 @@ import {
 	createPackageModal,
 	createPackageCardWithoutButton,
 	randomIntBetween,
+	formatUnit,
 } from "./utils.js";
 
-if (typeof HOTSPOT_DATA === "undefined" || !HOTSPOT_DATA) {
-	await getData();
-}
+const getDatas = async () => {
+	if (typeof HOTSPOT_DATA === "undefined" || !HOTSPOT_DATA) {
+		await getData();
+	}
+};
+await getDatas();
 
 // Contact button
 const contactButtons = document.querySelectorAll(
@@ -29,25 +33,48 @@ contactButtons.forEach(button => {
 // alogin.html
 if (window.location.href.includes("alogin")) {
 }
+
 // login.html
 else if (window.location.href.includes("login")) {
+	// Auto fill both username & password inputs
 	const usernameInput = document.querySelector("input#username");
 	const passwordInput = document.querySelector("input#password");
 
 	usernameInput.addEventListener("input", () => {
 		passwordInput.value = usernameInput.value;
 	});
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+	// usernameInput.focus();
+=======
+>>>>>>> 9a42c66bd0e52bfb5dff06c95024a26b355dfbea
+=======
+
+	// QR button
+	const qrButton = document.querySelector("#qr-button");
+	qrButton.addEventListener("click", event => {
+		window.location.href = "./qr.html";
+	});
+>>>>>>> parent of 9a42c66 (Update index.js)
 }
+
 // status.html
 else if (window.location.href.includes("status")) {
 	const welcomeMessage = document.querySelector("#welcome");
 	welcomeMessage.textContent = "Selamat " + getTimeOfDay();
 
-	const speedTestButton = document.querySelector("#speedtest-button");
-	speedTestButton.addEventListener("click", event => {
-		console.log("Diklik!");
+	// Format upload & download unit size to normal/common size unit (KB, MB, GB, etc..)
+	const uploadDownload = document.querySelectorAll("#upload, #download");
+	uploadDownload.forEach((element, index) => {
+		// Check if not byte unit
+		const unit = element.innerText.split(" ")[1];
+		if (unit.length > 1 && unit !== "B") {
+			element.innerText = formatUnit(element.innerText, 2);
+		}
 	});
 }
+
 // packages.html
 else if (window.location.href.includes("packages")) {
 	const ul = document.querySelector("ul#packages");
@@ -87,8 +114,9 @@ else if (window.location.href.includes("packages")) {
 		disableScroll: true,
 	});
 }
+
 // logout.html
 else if (window.location.href.includes("logout")) {
 	const img = document.querySelector("img");
-	img.src = `./images/logged-out-${randomIntBetween(1, 3)}.webp`;
+	img.src = `/images/logged-out-${randomIntBetween(1, 3)}.webp`;
 }
